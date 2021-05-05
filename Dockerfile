@@ -25,7 +25,6 @@ RUN yum clean all && yum update -y && yum install -y \
     subversion-tools \
     mod_dav_svn \
     supervisor \
-    viewvc \
     python-chardet \
     python-pygments \
     subversion-python \
@@ -61,6 +60,7 @@ COPY ./configs/svn.users-local /etc/subversion/svn.users
 #---------------
 
 # Configure ViewVC
+RUN mkdir /etc/viewvc/
 COPY ./viewvc-1.2.1/             /etc/viewvc/
 COPY ./configs/viewvc.conf-local /etc/viewvc/viewvc.conf
 COPY ./configs/viewvc.conf-local /etc/viewvc/viewvc.conf.dist
