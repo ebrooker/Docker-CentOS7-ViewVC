@@ -9,44 +9,44 @@
 # particularly for the ViewVC/Apache setup
 #
 
-contName=$1 # Save input variable holding Docker Container name
+containerName=$1 # Save input variable holding Docker Container name
 
-if [ -z "$contName" ]; then
+if [ -z "$containerName" ]; then
 
 	echo -e "\nPlease give a Docker Container name as command line input\n"
 
 else
 
-	if [ "$(docker ps -a | grep $contName)" ]; then
+	if [ "$(docker ps -a | grep $containerName)" ]; then
 
 		currentDate=$(date +%Y-%m-%d-%H_%M_%S)
 		echo -e "\nDate appended to end of name of logfiles: $currentDate\n"
 
-		echo -e "[SUCCESS] <$contName> Docker Container Logs accessed at $currentDate" >> dockerLogAccess.log
+		echo -e "[SUCCESS] <$containerName> Docker Container Logs accessed at $currentDate" >> dockerLogAccess.log
 
-		if [ ! -d "./$contName-logs" ]; then
-			mkdir "./$contName-logs"
+		if [ ! -d "./$containerName-logs" ]; then
+			mkdir "./$containerName-logs"
 		fi
 
-		echo -e "Fetching Docker Logs from Docker Container: $contName"
-		if [ ! -d "./$contName-logs/DockerLogs" ]; then
-			mkdir "./$contName-logs/DockerLogs"
+		echo -e "Fetching Docker Logs from Docker Container: $containerName"
+		if [ ! -d "./$containerName-logs/dockerLogs" ]; then
+			mkdir "./$containerName-logs/dockerLogs"
 		fi
 
-		docker logs $contName >& $contName-logs/DockerLogs/docker.log-$currentDate
+		docker logs $containerName >& $containerName-logs/dockerLogs/docker.log-$currentDate
 
-		echo -e "Fetching Apache Logs from Docker Container: $contName\n"
-		if [ ! -d "./$contName-logs/ApacheLogs" ]; then
-			mkdir "./$contName-logs/ApacheLogs"
+		echo -e "Fetching Apache Logs from Docker Container: $containerName\n"
+		if [ ! -d "./$containerName-logs/apacheLogs" ]; then
+			mkdir "./$containerName-logs/apacheLogs"
 		fi
-		docker cp $contName:/etc/httpd/logs/error_log       ./$contName-logs/ApacheLogs/error.log-$currentDate
-		docker cp $contName:/etc/httpd/logs/access_log      ./$contName-logs/ApacheLogs/access.log-$currentDate
-		docker cp $contName:/etc/httpd/logs/ssl_error_log   ./$contName-logs/ApacheLogs/ssl_error.log-$currentDate
-		docker cp $contName:/etc/httpd/logs/ssl_access_log  ./$contName-logs/ApacheLogs/ssl_access.log-$currentDate
-		docker cp $contName:/etc/httpd/logs/ssl_request_log ./$contName-logs/ApacheLogs/ssl_request.log-$currentDate
+		docker cp $containerName:/etc/httpd/logs/error_log       ./$containerName-logs/apacheLogs/error.log-$currentDate
+		docker cp $containerName:/etc/httpd/logs/access_log      ./$containerName-logs/apacheLogs/access.log-$currentDate
+		docker cp $containerName:/etc/httpd/logs/ssl_error_log   ./$containerName-logs/apacheLogs/ssl_error.log-$currentDate
+		docker cp $containerName:/etc/httpd/logs/ssl_access_log  ./$containerName-logs/apacheLogs/ssl_access.log-$currentDate
+		docker cp $containerName:/etc/httpd/logs/ssl_request_log ./$containerName-logs/apacheLogs/ssl_request.log-$currentDate
 
 	else
-		echo -e "[ERROR] <$contName> not running; failed to access Docker Container Logs at $currentDate" >> dockerLogAccess.log
+		echo -e "[ERROR] <$containerName> not running; failed to access Docker Container Logs at $currentDate" >> dockerLogAccess.log
 
 	fi
 fi
