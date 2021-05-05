@@ -17,7 +17,7 @@ if [ -z "$contName" ]; then
 
 else
 
-	if [ "$(docker ps -a | grep Hydrus_Server)" ]; then
+	if [ "$(docker ps -a | grep $contName)" ]; then
 
 		currentDate=$(date +%Y-%m-%d-%H_%M_%S)
 		echo -e "\nDate appended to end of name of logfiles: $currentDate\n"
