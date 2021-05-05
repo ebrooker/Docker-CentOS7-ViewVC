@@ -14,7 +14,7 @@ containerName=My_Server
 imageName=centos7_httpd_viewvc
 
 # Uncomment below and specify path to existingrepo to mount to container
-#repoPath=
+# repoPath=
 
 # Make sure the container is stopped and removed before any rebuilding occurs
 docker stop $containerName

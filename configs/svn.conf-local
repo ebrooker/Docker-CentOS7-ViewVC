@@ -1,0 +1,8 @@
+<location /viewvc>
+
+AuthType Basic
+AuthName "Subversion Repository"
+AuthUserFile /etc/httpd/svn.users
+Require valid-user
+
+</location>

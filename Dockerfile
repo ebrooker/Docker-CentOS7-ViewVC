@@ -53,7 +53,7 @@ COPY ./html-local/               /var/www/html
 
 # Configure httpd for SVN use and login
 COPY ./configs/svn.conf-local  /etc/httpd/conf.d/svn.conf
-COPY ./configs/svn.users-local /etc/subversion/svn.users
+COPY ./configs/svn.users-local /etc/httpd/svn.users
 
 #---------------
 # ViewVC setup
