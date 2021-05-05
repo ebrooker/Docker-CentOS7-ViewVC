@@ -45,7 +45,7 @@ COPY ./configs/httpd.conf-local /etc/httpd/conf/httpd.conf
 
 # Configure html website w/ local html setup
 COPY ./html-local/               /var/www/html
-COPY ./html-local/htaccess-local /var/www/html/.htaccess
+# COPY ./html-local/htaccess-local /var/www/html/.htaccess
 
 
 #---------------
