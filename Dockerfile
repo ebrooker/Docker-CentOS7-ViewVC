@@ -68,6 +68,7 @@ COPY ./configs/viewvc.conf-local     /etc/viewvc/viewvc.conf
 COPY ./configs/viewvc.conf-local     /etc/viewvc/viewvc.conf.dist
 
 # Start up the Apache server
+EXPOSE 80
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 # Nothing else left to do for now
