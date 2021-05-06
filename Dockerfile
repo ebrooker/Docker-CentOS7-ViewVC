@@ -59,11 +59,12 @@ COPY ./configs/svn.users-local /etc/httpd/svn.users
 # ViewVC setup
 #---------------
 
-# Configure ViewVC
-RUN mkdir /etc/viewvc/
-COPY ./viewvc-1.2.1/             /etc/viewvc/
-COPY ./configs/viewvc.conf-local /etc/viewvc/viewvc.conf
-COPY ./configs/viewvc.conf-local /etc/viewvc/viewvc.conf.dist
+# Configure ViewVC using pre-installed version stored in compressed file
+# Currently using ViewVC version 1.2.1 (latest)
+COPY ./viewvc-installed-local.tar.gz /etc/viewvc-installed.tar.gz
+RUN  tar -xzvf                       /etc/viewvc-installed.tar.gz -C /etc/
+COPY ./configs/viewvc.conf-local     /etc/viewvc/viewvc.conf
+COPY ./configs/viewvc.conf-local     /etc/viewvc/viewvc.conf.dist
 
 # Start up the Apache server
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
