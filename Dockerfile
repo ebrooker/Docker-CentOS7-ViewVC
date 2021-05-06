@@ -43,7 +43,8 @@ RUN mkdir -p /svn && chgrp apache /svn
 COPY ./configs/httpd.conf-local /etc/httpd/conf/httpd.conf
 
 # Configure html website w/ local html setup
-COPY ./html-local/               /var/www/html
+# Uncomment if using web HTML in conjunction with ViewVC
+# COPY ./html-local/               /var/www/html
 # COPY ./html-local/htaccess-local /var/www/html/.htaccess
 
 
